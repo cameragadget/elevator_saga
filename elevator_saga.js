@@ -19,10 +19,15 @@
     });
 
     floors.forEach(function(floor){
-      floor.on("up_button_pressed", function(floorNum) {
-        elevator.goToFloor(floorNum)
-      });
+      floor.on("up_button_pressed", floorButtonPressed);
+      floor.on("down_button_pressed", floorButtonPressed)
     });
+
+    var peopleWaiting = [];
+    function floorButtonPressed(){
+      var floor = this;
+      peopleWaiting.push(floor.floorNum());
+    };
 
 
   },
